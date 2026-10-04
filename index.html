@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModBridge — Java Mods to Bedrock Add-ons</title>
+  <meta name="description" content="See how ModBridge converts Minecraft Java mods to Bedrock add-ons, checks compatibility, and helps fix Bedrock errors.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="noise"></div>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="scan-beam"></div>
+
+  <header class="navbar">
+    <a href="#" class="brand">
+      <span class="brand-icon brand-bridge">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M7 24V11M25 24V11"/>
+          <path d="M7 14c5-7 13-7 18 0"/>
+          <path d="M4 24h24"/>
+          <circle cx="7" cy="9" r="2"/>
+          <circle cx="25" cy="9" r="2"/>
+        </svg>
+      </span>
+      <span class="brand-name">ModBridge</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#convert">Convert</a>
+      <a href="#fix">Crash Fix</a>
+      <a href="#result">Output</a>
+    </nav>
+
+    <a class="nav-btn nav-link-button" href="converter.html">Get Started</a>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="hero-badge">
+        <span class="live-dot"></span>
+        JAVA MODS → BEDROCK ADD-ONS
+      </div>
+
+      <h1>
+        Convert Java mods
+        <span>to Bedrock.</span>
+      </h1>
+
+      <p>
+        Upload a Minecraft Java mod, let ModBridge inspect its files and features,
+        see what can be converted, and get a Bedrock-ready add-on with a clear report.
+      </p>
+
+      <div class="hero-actions">
+        <a class="primary button-link" href="converter.html">
+          Get Started
+          <b>→</b>
+        </a>
+        <button class="secondary" data-scroll="#convert">See How It Works</button>
+      </div>
+
+      <div class="hero-strip">
+        <div>Java .JAR Upload</div>
+        <div>Compatibility Scan</div>
+        <div>Bedrock Conversion</div>
+        <div>Crash Fix</div>
+        <div>.mcaddon Output</div>
+      </div>
+
+      <div class="hero-cards">
+        <div class="float-card mini-card mini-card-left">
+          <small>STEP 01</small>
+          <strong>Upload Java Mod</strong>
+          <span>Fabric / Forge / NeoForge</span>
+        </div>
+
+        <div class="main-preview">
+          <div class="main-preview-top">
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="top-status">
+              <i></i>
+              Ready
+            </div>
+          </div>
+
+          <div class="preview-header">
+            <div>
+              <small>MOD</small>
+              <strong>BetterWeapons.jar</strong>
+            </div>
+            <div class="score-pill">91% Support</div>
+          </div>
+
+          <div class="preview-progress">
+            <div class="progress-label">
+              <span>Bedrock compatibility</span>
+              <strong>91%</strong>
+            </div>
+            <div class="bar"><i></i></div>
+          </div>
+
+          <div class="preview-stats">
+            <div><span>Items</span><b>24</b></div>
+            <div><span>Blocks</span><b>08</b></div>
+            <div><span>Textures</span><b>41</b></div>
+            <div><span>Recipes</span><b>13</b></div>
+          </div>
+
+          <div class="preview-terminal">
+            <div class="line good"><span>✓</span> items can be converted</div>
+            <div class="line good"><span>✓</span> textures can be reused</div>
+            <div class="line warn"><span>!</span> 3 Java systems need replacement</div>
+          </div>
+        </div>
+
+        <div class="float-card mini-card mini-card-right">
+          <small>STEP 04</small>
+          <strong>Download Add-on</strong>
+          <span>.mcaddon + source files</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker-wrap">
+      <div class="ticker">
+        <span>UPLOAD JAVA MOD</span><i></i>
+        <span>SCAN FEATURES</span><i></i>
+        <span>CONVERT CONTENT</span><i></i>
+        <span>FIX BEDROCK ERRORS</span><i></i>
+        <span>DOWNLOAD MCADDON</span><i></i>
+      </div>
+      <div class="ticker">
+        <span>UPLOAD JAVA MOD</span><i></i>
+        <span>SCAN FEATURES</span><i></i>
+        <span>CONVERT CONTENT</span><i></i>
+        <span>FIX BEDROCK ERRORS</span><i></i>
+        <span>DOWNLOAD MCADDON</span><i></i>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="how">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">HOW IT WORKS</span>
+          <h2>From Java mod to Bedrock add-on.</h2>
+        </div>
+        <p>
+          The interface shows every stage clearly so the user knows what is being
+          converted, what needs help, and what will be included in the final Bedrock add-on.
+        </p>
+      </div>
+
+      <div class="flow-grid">
+        <article class="flow-card">
+          <span class="flow-no">01</span>
+          <div class="flow-icon">↑</div>
+          <h3>Upload the Java mod</h3>
+          <p>User uploads a Minecraft Java <b>.jar</b>. The system detects the mod loader and reads the archive.</p>
+          <div class="flow-tags">
+            <span>Fabric</span><span>Forge</span><span>NeoForge</span>
+          </div>
+        </article>
+
+        <article class="flow-card">
+          <span class="flow-no">02</span>
+          <div class="flow-icon">⌁</div>
+          <h3>Analyze everything</h3>
+          <p>Items, blocks, textures, recipes, entities, resources and Java-side logic are detected and classified.</p>
+          <div class="flow-tags">
+            <span>Items</span><span>Blocks</span><span>Logic</span>
+          </div>
+        </article>
+
+        <article class="flow-card">
+          <span class="flow-no">03</span>
+          <div class="flow-icon">✦</div>
+          <h3>Convert to Bedrock</h3>
+          <p>Compatible content is mapped to Bedrock packs. Supported Java logic is replaced with Bedrock-friendly systems.</p>
+          <div class="flow-tags">
+            <span>RP</span><span>BP</span><span>Script API</span>
+          </div>
+        </article>
+
+        <article class="flow-card">
+          <span class="flow-no">04</span>
+          <div class="flow-icon">↓</div>
+          <h3>Download result</h3>
+          <p>User gets a Bedrock add-on plus a report showing converted, replaced and unsupported features.</p>
+          <div class="flow-tags">
+            <span>.mcaddon</span><span>Source</span><span>Report</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="convert">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">CONVERSION INTERFACE</span>
+          <h2>See exactly what happens to the mod.</h2>
+        </div>
+        <p>
+          The user should never see a fake “100% complete” message. The interface shows
+          what maps cleanly to Bedrock and what needs AI assistance or manual replacement.
+        </p>
+      </div>
+
+      <div class="dashboard-shell">
+        <aside class="sidebar">
+          <div class="sidebar-brand">
+            <span class="sidebar-logo-icon">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path class="bridge-pillars" d="M7 24V11M25 24V11"/>
+                <path class="bridge-arch" d="M7 14c5-7 13-7 18 0"/>
+                <path class="bridge-road" d="M4 24h24"/>
+                <circle cx="7" cy="9" r="2"/>
+                <circle cx="25" cy="9" r="2"/>
+              </svg>
+            </span>
+            <div>
+              <b>ModBridge</b>
+              <small>converter</small>
+            </div>
+          </div>
+
+          <div class="side-group-label">CONVERSION</div>
+          <button class="side-link active"><span class="nav-icon">
+<svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="2"/><rect x="14" y="4" width="6" height="6" rx="2"/><rect x="4" y="14" width="6" height="6" rx="2"/><rect x="14" y="14" width="6" height="6" rx="2"/></svg>
+</span><span class="side-label-text">Overview</span></button>
+          <button class="side-link"><span class="nav-icon">
+<svg viewBox="0 0 24 24"><path d="M12 15V4"/><path d="m8 8 4-4 4 4"/><path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+</span><span class="side-label-text">Upload</span></button>
+          <button class="side-link"><span class="nav-icon">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 9v3l2 2"/><path d="M4 12H2M22 12h-2M12 4V2M12 22v-2"/></svg>
+</span><span class="side-label-text">Analysis</span></button>
+          <button class="side-link"><span class="nav-icon">
+<svg viewBox="0 0 24 24"><path d="M5 7h11"/><path d="m13 4 3 3-3 3"/><path d="M19 17H8"/><path d="m11 14-3 3 3 3"/></svg>
+</span><span class="side-label-text">Convert</span></button>
+
+          <div class="side-group-label">TOOLS</div>
+          <button class="side-link"><span class="nav-icon">
+<svg viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0-5 5L4 17l3 3 5.5-5.5a4 4 0 0 0 5-5l-3 3-3-3 3-3Z"/></svg>
+</span><span class="side-label-text">Crash Fixer</span></button>
+          <button class="side-link"><span class="nav-icon">
+<svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8 11 4 4 4-4"/><path d="M5 18v2h14v-2"/></svg>
+</span><span class="side-label-text">Downloads</span></button>
+
+          <div class="sidebar-footer">
+            <div class="engine-box">
+              <i></i>
+              <div>
+                <small>ENGINE</small>
+                <b>Ready</b>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="workspace">
+          <div class="workspace-top">
+            <div>
+              <small>CONVERTER</small>
+              <strong>Java → Bedrock</strong>
+            </div>
+            <div class="top-actions">
+              <button class="soft-btn">Docs</button>
+              <span class="avatar">R</span>
+            </div>
+          </div>
+
+          <div class="workspace-body">
+            <div class="headline-row">
+              <div>
+                <span class="micro-kicker">CURRENT MOD</span>
+                <h3>BetterWeapons.jar</h3>
+                <p>Fabric • Minecraft 1.21.x • 12.8 MB</p>
+              </div>
+              <div class="live-chip"><i></i> Analysis Complete</div>
+            </div>
+
+            <div class="cards-grid">
+              <article class="ui-card upload-ghost">
+                <div class="card-icon jar-card-icon">
+                  <span class="jar-glow"></span>
+                  <svg viewBox="0 0 48 48" aria-hidden="true">
+                    <path class="jar-page" d="M12 7h17l7 7v27H12z"/>
+                    <path class="jar-fold" d="M29 7v8h7"/>
+                    <path class="jar-lines" d="M18 23h12M18 28h12M18 33h8"/>
+                  </svg>
+                  <span class="jar-badge">JAR</span>
+                </div>
+                <strong>Java Mod</strong>
+                <span>BetterWeapons.jar</span>
+                <button>Change File</button>
+              </article>
+
+              <article class="ui-card big-report">
+                <div class="report-top">
+                  <div>
+                    <span class="micro-kicker">BEDROCK SUPPORT</span>
+                    <strong>High Compatibility</strong>
+                  </div>
+                  <b>91%</b>
+                </div>
+
+                <div class="report-meter">
+                  <div class="meter-head">
+                    <span>Convertible content</span>
+                    <strong>91%</strong>
+                  </div>
+                  <div class="meter-bar"><i></i></div>
+                </div>
+
+                <div class="report-grid">
+                  <div><span>Items</span><b>24</b></div>
+                  <div><span>Blocks</span><b>08</b></div>
+                  <div><span>Textures</span><b>41</b></div>
+                  <div><span>Entities</span><b>03</b></div>
+                </div>
+
+                <div class="report-footer">
+                  <span class="tag">✓ Textures</span>
+                  <span class="tag">✓ Recipes</span>
+                  <span class="tag">✦ Logic</span>
+                  <span class="tag warn-tag">! Mixins</span>
+                </div>
+              </article>
+
+              <article class="ui-card mini-stat">
+                <span class="stat-label">AUTO</span>
+                <strong>71%</strong>
+                <small>directly convertible</small>
+              </article>
+
+              <article class="ui-card mini-stat">
+                <span class="stat-label">AI HELP</span>
+                <strong>20%</strong>
+                <small>logic replacement</small>
+              </article>
+            </div>
+
+            <div class="activity-strip">
+              <div class="activity-card">
+                <span>RESOURCE PACK</span>
+                <strong>Textures ready</strong>
+                <small>icons, textures, sounds</small>
+              </div>
+              <div class="activity-card">
+                <span>BEHAVIOR PACK</span>
+                <strong>Content ready</strong>
+                <small>items, recipes, entities</small>
+              </div>
+              <div class="activity-card">
+                <span>JAVA LOGIC</span>
+                <strong>3 replacements</strong>
+                <small>needs Script API mapping</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fixer-section" id="fix">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">CRASH & ERROR FIXING</span>
+          <h2>If the Bedrock add-on breaks, fix it from the log.</h2>
+        </div>
+        <p>
+          The user uploads the generated add-on and Bedrock Content Log.
+          The fixer shows the problem, the suggested fix, and which issues can be repaired automatically.
+        </p>
+      </div>
+
+      <div class="fixer-shell">
+        <div class="terminal-panel">
+          <div class="terminal-top">
+            <span></span><span></span><span></span>
+            <b>content-log.txt</b>
+          </div>
+          <pre><span class="dim">[ModBridge]</span> scanning Bedrock add-on...
+<span class="good">✓</span> manifest.json valid
+<span class="good">✓</span> behavior pack linked
+<span class="bad-line">×</span> missing texture: modbridge:obsidian_blade
+<span class="warn">!</span> outdated Script API call
+<span class="bad-line">×</span> invalid component in custom item
+<span class="dim">[Fixer]</span> 3 safe fixes found</pre>
+        </div>
+
+        <div class="fixer-info">
+          <div class="fixer-box">
+            <span class="micro-kicker">FIX REPORT</span>
+            <h3>3 issues found</h3>
+            <p>The interface shows which problems are automatic, AI-assisted or manual.</p>
+          </div>
+
+          <div class="fixer-list">
+            <div class="fix-item">
+              <i class="dot good-dot"></i>
+              <div>
+                <b>Missing texture path</b>
+                <small>path can be repaired automatically</small>
+              </div>
+              <strong>AUTO</strong>
+            </div>
+            <div class="fix-item">
+              <i class="dot warn-dot"></i>
+              <div>
+                <b>Script API mismatch</b>
+                <small>replacement can be generated</small>
+              </div>
+              <strong>AI</strong>
+            </div>
+            <div class="fix-item">
+              <i class="dot bad-dot"></i>
+              <div>
+                <b>Unsupported Java renderer</b>
+                <small>needs a Bedrock replacement</small>
+              </div>
+              <strong>MANUAL</strong>
+            </div>
+          </div>
+
+          <button class="primary full-btn">
+            Apply Available Fixes
+            <b>→</b>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panels-section" id="result">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">FINAL OUTPUT</span>
+          <h2>What the user gets at the end.</h2>
+        </div>
+        <p>
+          The final screen should make the result simple: download the Bedrock add-on,
+          inspect the report, or reopen the fixer if something is still unsupported.
+        </p>
+      </div>
+
+      <div class="output-grid">
+        <article class="output-card main-output">
+          <div class="output-icon">↓</div>
+          <span class="micro-kicker">MAIN DOWNLOAD</span>
+          <h3>BetterWeapons-Bedrock.mcaddon</h3>
+          <p>Resource Pack + Behavior Pack + supported Script API replacements.</p>
+          <button class="primary">Download .mcaddon</button>
+        </article>
+
+        <article class="output-card">
+          <div class="output-icon">◫</div>
+          <span class="micro-kicker">SOURCE PROJECT</span>
+          <h3>Editable Bedrock files</h3>
+          <p>Resource Pack, Behavior Pack, scripts, textures and generated JSON.</p>
+          <button class="secondary">Download Source</button>
+        </article>
+
+        <article class="output-card">
+          <div class="output-icon">✓</div>
+          <span class="micro-kicker">REPORT</span>
+          <h3>Conversion Report</h3>
+          <p>Shows auto-converted, AI-assisted, replaced and unsupported features.</p>
+          <button class="secondary">View Report</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#" class="brand">
+      <span class="brand-icon brand-bridge">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M7 24V11M25 24V11"/>
+          <path d="M7 14c5-7 13-7 18 0"/>
+          <path d="M4 24h24"/>
+          <circle cx="7" cy="9" r="2"/>
+          <circle cx="25" cy="9" r="2"/>
+        </svg>
+      </span>
+      <span class="brand-name">ModBridge</span>
+    </a>
+    <span class="footer-copy">Java mods → Bedrock add-ons • working local prototype</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

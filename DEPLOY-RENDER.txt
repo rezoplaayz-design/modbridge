@@ -1,0 +1,31 @@
+MODBRIDGE - RENDER READY
+
+EASIEST DEPLOY
+==============
+
+1. Create/login to GitHub.
+2. Create a new repository named: modbridge
+3. Upload ALL files from this folder to the repository.
+4. Go to https://render.com
+5. Sign in with GitHub.
+6. Click New + -> Blueprint.
+7. Select your modbridge repository.
+8. Render detects render.yaml.
+9. Click Deploy / Apply.
+10. Wait for deployment to finish.
+
+Your website will get an address similar to:
+https://modbridge-xxxx.onrender.com
+
+No CMD / Python / run.bat is needed for visitors.
+They only open the website, upload their .jar, and use the web interface.
+
+FREE RENDER LIMITATION
+======================
+The free server sleeps after about 15 minutes without traffic.
+When somebody opens it again, it wakes automatically; the first load can take
+around a minute.
+
+Uploaded/generated files are temporary on Render Free and can disappear after
+restart/redeploy. This is fine for a converter where files are generated and
+downloaded during the same session.

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModBridge Converter — Java to Bedrock</title>
+  <meta name="description" content="Upload a Minecraft Java mod, analyze compatibility, build a conversion plan, validate, and prepare a Bedrock add-on.">
+  <link rel="stylesheet" href="converter.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="noise"></div>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">
+        <svg viewBox="0 0 32 32">
+          <path d="M7 24V11M25 24V11"/>
+          <path d="M7 14c5-7 13-7 18 0"/>
+          <path d="M4 24h24"/>
+          <circle cx="7" cy="9" r="2"/>
+          <circle cx="25" cy="9" r="2"/>
+        </svg>
+      </span>
+      <span>
+        <b>ModBridge</b>
+        <small>Java → Bedrock</small>
+      </span>
+    </a>
+
+    <div class="top-actions">
+      <a href="index.html" class="ghost">← Home</a>
+      <button class="help-btn" id="helpBtn">How it works</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <aside class="steps-sidebar">
+      <div class="sidebar-title">
+        <span>CONVERSION</span>
+        <strong>Build your Bedrock add-on</strong>
+      </div>
+
+      <div class="step-list">
+        <button class="step active" data-step="1">
+          <span class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 15V4"/><path d="m8 8 4-4 4 4"/><path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+          </span>
+          <span class="step-copy"><small>STEP 01</small><b>Upload Mod</b></span>
+          <i></i>
+        </button>
+
+        <button class="step" data-step="2">
+          <span class="step-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 9v3l2 2"/><path d="M4 12H2M22 12h-2M12 4V2M12 22v-2"/></svg>
+          </span>
+          <span class="step-copy"><small>STEP 02</small><b>Analyze</b></span>
+          <i></i>
+        </button>
+
+        <button class="step" data-step="3">
+          <span class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 7h11"/><path d="m13 4 3 3-3 3"/><path d="M19 17H8"/><path d="m11 14-3 3 3 3"/></svg>
+          </span>
+          <span class="step-copy"><small>STEP 03</small><b>Conversion Plan</b></span>
+          <i></i>
+        </button>
+
+        <button class="step" data-step="4">
+          <span class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="m5.6 5.6 2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          <span class="step-copy"><small>STEP 04</small><b>Convert</b></span>
+          <i></i>
+        </button>
+
+        <button class="step" data-step="5">
+          <span class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/><rect x="3" y="3" width="18" height="18" rx="5"/></svg>
+          </span>
+          <span class="step-copy"><small>STEP 05</small><b>Validate</b></span>
+          <i></i>
+        </button>
+
+        <button class="step" data-step="6">
+          <span class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8 11 4 4 4-4"/><path d="M5 18v2h14v-2"/></svg>
+          </span>
+          <span class="step-copy"><small>STEP 06</small><b>Download</b></span>
+          <i></i>
+        </button>
+      </div>
+
+      <div class="engine-card">
+        <span class="engine-dot"></span>
+        <div>
+          <small>CONVERTER ENGINE</small>
+          <b id="engineState">Waiting for mod</b>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <!-- STEP 1 -->
+      <section class="screen active" id="screen1">
+        <div class="screen-head">
+          <div>
+            <span class="eyebrow">STEP 01 / UPLOAD</span>
+            <h1>Upload your Java mod.</h1>
+            <p>Add the original <b>.jar</b>. ModBridge will detect the loader, Minecraft version, resources and code structure.</p>
+          </div>
+          <div class="safe-chip"><i></i> Archive inspection</div>
+        </div>
+
+        <input id="jarInput" type="file" accept=".jar,application/java-archive" hidden>
+
+        <button class="dropzone" id="dropzone">
+          <div class="drop-art">
+            <span class="ring ring1"></span>
+            <span class="ring ring2"></span>
+            <span class="upload-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 15V4"/><path d="m8 8 4-4 4 4"/><path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+            </span>
+          </div>
+          <strong>Drop your Java mod here</strong>
+          <span>or click to choose a .jar file</span>
+          <small>Fabric • Forge • NeoForge • up to 200 MB</small>
+        </button>
+
+        <div class="selected-file hidden" id="selectedFile">
+          <div class="file-icon">
+            <svg viewBox="0 0 48 48">
+              <path d="M12 7h17l7 7v27H12z"/>
+              <path d="M29 7v8h7"/>
+              <path d="M18 23h12M18 28h12M18 33h8"/>
+            </svg>
+            <span>JAR</span>
+          </div>
+          <div class="file-info">
+            <small>SELECTED MOD</small>
+            <strong id="fileName">BetterWeapons.jar</strong>
+            <span id="fileMeta">12.8 MB</span>
+          </div>
+          <button class="remove-btn" id="removeFile">×</button>
+        </div>
+
+        <div class="upload-info-grid">
+          <article>
+            <span class="info-icon">✓</span>
+            <div><b>Loader detection</b><small>Fabric, Forge and NeoForge metadata</small></div>
+          </article>
+          <article>
+            <span class="info-icon">⌁</span>
+            <div><b>Resource scan</b><small>Textures, sounds, recipes and assets</small></div>
+          </article>
+          <article>
+            <span class="info-icon">◇</span>
+            <div><b>Safer inspection</b><small>Uploaded JAR code should not be executed</small></div>
+          </article>
+        </div>
+
+        <div class="footer-action">
+          <span id="uploadHint">Choose a .jar to continue</span>
+          <button class="primary disabled" id="analyzeBtn" disabled>Analyze Mod <b>→</b></button>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="screen" id="screen2">
+        <div class="screen-head">
+          <div>
+            <span class="eyebrow">STEP 02 / ANALYZE</span>
+            <h1>Understanding the mod.</h1>
+            <p>The JAR is read as an archive. Resources and metadata are detected before the converter decides what can be mapped safely.</p>
+          </div>
+          <div class="percent-bubble" id="analysisPct">0%</div>
+        </div>
+
+        <div class="analysis-box">
+          <div class="analysis-file">
+            <div class="tiny-file">JAR</div>
+            <div>
+              <small>ANALYZING</small>
+              <strong id="analysisFileName">mod.jar</strong>
+            </div>
+            <span class="scan-state" id="scanState"><i></i> Starting</span>
+          </div>
+
+          <div class="main-progress"><i id="analysisBar"></i></div>
+          <div class="current-task" id="currentTask">Reading archive structure...</div>
+
+          <div class="scan-grid">
+            <article data-scan="loader"><span>Mod Loader</span><b id="aLoader">—</b><em>Waiting</em></article>
+            <article data-scan="version"><span>MC Version</span><b id="aVersion">—</b><em>Waiting</em></article>
+            <article data-scan="items"><span>Item Textures</span><b id="aItems">—</b><em>Waiting</em></article>
+            <article data-scan="blocks"><span>Block Textures</span><b id="aBlocks">—</b><em>Waiting</em></article>
+            <article data-scan="textures"><span>Textures</span><b id="aTextures">—</b><em>Waiting</em></article>
+            <article data-scan="recipes"><span>Recipes</span><b id="aRecipes">—</b><em>Waiting</em></article>
+            <article data-scan="entities"><span>Entity Hints</span><b id="aEntities">—</b><em>Waiting</em></article>
+            <article data-scan="logic"><span>Java Classes</span><b id="aLogic">—</b><em>Waiting</em></article>
+            <article data-scan="mixins"><span>Mixins / Hooks</span><b id="aMixins">—</b><em>Waiting</em></article>
+          </div>
+        </div>
+
+        <div class="footer-action">
+          <span id="analysisFooter">Analysis will build your conversion plan</span>
+          <button class="primary disabled" id="planBtn" disabled>View Conversion Plan <b>→</b></button>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="screen" id="screen3">
+        <div class="screen-head">
+          <div>
+            <span class="eyebrow">STEP 03 / PLAN</span>
+            <h1>Your conversion plan.</h1>
+            <p>ModBridge separates easy conversions from logic that needs a Bedrock replacement.</p>
+          </div>
+          <div class="support-score"><small>BEDROCK SUPPORT</small><strong id="supportScore">89%</strong></div>
+        </div>
+
+        <div class="score-card">
+          <div class="score-copy">
+            <small>OVERALL COMPATIBILITY</small>
+            <h2 id="compatTitle">High compatibility</h2>
+            <p id="compatText">Most content can be mapped to Bedrock structures.</p>
+          </div>
+          <div class="score-ring">
+            <svg viewBox="0 0 100 100">
+              <circle class="ring-bg" cx="50" cy="50" r="41"/>
+              <circle class="ring-value" id="scoreCircle" cx="50" cy="50" r="41"/>
+            </svg>
+            <strong id="ringScore">89</strong>
+          </div>
+        </div>
+
+        <div class="plan-columns">
+          <article class="plan-card auto">
+            <div class="plan-head">
+              <span class="plan-icon">✓</span>
+              <div><small>AUTOMATIC</small><h3>Convert directly</h3></div>
+              <b id="autoPct">71%</b>
+            </div>
+            <div class="plan-list">
+              <div><span>Items & item data</span><em>Ready</em></div>
+              <div><span>Blocks & basic properties</span><em>Ready</em></div>
+              <div><span>Textures & icons</span><em>Ready</em></div>
+              <div><span>Recipes & loot data</span><em>Ready</em></div>
+              <div><span>Sounds & language files</span><em>Ready</em></div>
+            </div>
+          </article>
+
+          <article class="plan-card ai">
+            <div class="plan-head">
+              <span class="plan-icon">✦</span>
+              <div><small>ASSISTED</small><h3>Needs replacement</h3></div>
+              <b id="aiPct">20%</b>
+            </div>
+            <div class="plan-list">
+              <div><span>Java event logic</span><em>Script API</em></div>
+              <div><span>Custom abilities</span><em>Rewrite</em></div>
+              <div><span>Commands & triggers</span><em>Map</em></div>
+              <div><span>Entity behavior logic</span><em>Rewrite</em></div>
+            </div>
+          </article>
+
+          <article class="plan-card manual">
+            <div class="plan-head">
+              <span class="plan-icon">!</span>
+              <div><small>REVIEW</small><h3>Manual alternative</h3></div>
+              <b id="manualPct">9%</b>
+            </div>
+            <div class="plan-list">
+              <div><span>Fabric / Forge mixins</span><em>Review</em></div>
+              <div><span>Custom render hooks</span><em>Alternative</em></div>
+              <div><span>Deep networking APIs</span><em>Manual</em></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="footer-action">
+          <span>No unsupported feature is hidden from the report.</span>
+          <button class="primary" id="startConvertBtn">Convert to Bedrock <b>→</b></button>
+        </div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="screen" id="screen4">
+        <div class="screen-head">
+          <div>
+            <span class="eyebrow">STEP 04 / CONVERT</span>
+            <h1>Building the Bedrock project.</h1>
+            <p>Supported resources and data are written into real Bedrock Resource/Behavior Packs, then packaged into an .mcaddon.</p>
+          </div>
+          <div class="percent-bubble" id="convertPct">0%</div>
+        </div>
+
+        <div class="convert-layout">
+          <div class="task-list" id="taskList">
+            <div class="convert-task"><span class="task-status"></span><div><b>Create Resource Pack</b><small>Textures, icons, sounds and language files</small></div><em>Waiting</em></div>
+            <div class="convert-task"><span class="task-status"></span><div><b>Create Behavior Pack</b><small>Items, blocks, recipes and entity data</small></div><em>Waiting</em></div>
+            <div class="convert-task"><span class="task-status"></span><div><b>Convert Items & Blocks</b><small>Map identifiers and Bedrock components</small></div><em>Waiting</em></div>
+            <div class="convert-task"><span class="task-status"></span><div><b>Convert Recipes & Loot</b><small>Generate Bedrock-compatible JSON</small></div><em>Waiting</em></div>
+            <div class="convert-task"><span class="task-status"></span><div><b>Port Entity Behavior</b><small>Map supported behavior systems</small></div><em>Waiting</em></div>
+            <div class="convert-task"><span class="task-status"></span><div><b>Rewrite Compatible Logic</b><small>Prepare supported Script API replacements</small></div><em>Waiting</em></div>
+            <div class="convert-task"><span class="task-status"></span><div><b>Build Add-on Project</b><small>Link packs and prepare manifests</small></div><em>Waiting</em></div>
+          </div>
+
+          <div class="file-tree">
+            <div class="tree-head">
+              <span>GENERATED PROJECT</span>
+              <i class="tree-live"></i>
+            </div>
+            <pre id="fileTree">modbridge-output/
+└─ preparing...</pre>
+          </div>
+        </div>
+
+        <div class="footer-action">
+          <span id="convertFooter">Conversion will continue through every supported component.</span>
+          <button class="primary disabled" id="validateBtn" disabled>Run Validation <b>→</b></button>
+        </div>
+      </section>
+
+      <!-- STEP 5 -->
+      <section class="screen" id="screen5">
+        <div class="screen-head">
+          <div>
+            <span class="eyebrow">STEP 05 / VALIDATE</span>
+            <h1>Check the add-on before download.</h1>
+            <p>The generated files are parsed again, manifest links are checked, and copied texture references are verified before packaging.</p>
+          </div>
+          <div class="validation-count"><strong id="passedCount">0</strong><small>CHECKS PASSED</small></div>
+        </div>
+
+        <div class="validation-layout">
+          <div class="validation-list" id="validationList">
+            <div class="validation-item"><span></span><div><b>Manifest structure</b><small>UUIDs, versions and module links</small></div><em>Waiting</em></div>
+            <div class="validation-item"><span></span><div><b>JSON syntax</b><small>Generated items, entities and recipes</small></div><em>Waiting</em></div>
+            <div class="validation-item"><span></span><div><b>Texture references</b><small>Paths, icons and resource mappings</small></div><em>Waiting</em></div>
+            <div class="validation-item"><span></span><div><b>Identifiers</b><small>Duplicate or invalid identifiers</small></div><em>Waiting</em></div>
+            <div class="validation-item"><span></span><div><b>Pack dependencies</b><small>Resource / behavior pack connections</small></div><em>Waiting</em></div>
+            <div class="validation-item"><span></span><div><b>Script mappings</b><small>Generated supported logic replacements</small></div><em>Waiting</em></div>
+          </div>
+
+          <div class="validation-summary">
+            <span class="summary-icon" id="summaryIcon">⌁</span>
+            <small>VALIDATION STATUS</small>
+            <h3 id="validationTitle">Checking project...</h3>
+            <p id="validationText">The project is being inspected before packaging.</p>
+            <div class="summary-numbers">
+              <div><span>Passed</span><b id="sumPassed">0</b></div>
+              <div><span>Warnings</span><b id="sumWarnings">0</b></div>
+              <div><span>Fixed</span><b id="sumFixed">0</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-action">
+          <span id="validationFooter">Validation will finish before the download becomes available.</span>
+          <button class="primary disabled" id="downloadStepBtn" disabled>View Downloads <b>→</b></button>
+        </div>
+      </section>
+
+      <!-- STEP 6 -->
+      <section class="screen" id="screen6">
+        <div class="success-hero">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>
+          </div>
+          <span class="eyebrow">CONVERSION COMPLETE</span>
+          <h1>Your Bedrock add-on is ready.</h1>
+          <p>The result screen shows what was converted, what was replaced, and anything that still needs manual work.</p>
+        </div>
+
+        <div class="download-main">
+          <div class="download-file-icon">
+            <svg viewBox="0 0 48 48"><path d="M12 7h17l7 7v27H12z"/><path d="M29 7v8h7"/><path d="M18 24h12M18 29h12"/></svg>
+            <span>MCADDON</span>
+          </div>
+          <div class="download-copy">
+            <small>MAIN DOWNLOAD</small>
+            <strong id="outputName">Converted-Mod-Bedrock.mcaddon</strong>
+            <span>Resource Pack + Behavior Pack + generated supported logic</span>
+          </div>
+          <div class="final-score">
+            <small>SUPPORT</small>
+            <strong id="finalScore">89%</strong>
+          </div>
+        </div>
+
+        <div class="download-actions">
+          <button class="download-card primary-download" id="downloadAddon">
+            <span class="download-card-icon">↓</span>
+            <div><small>BEDROCK ADD-ON</small><strong>Download .mcaddon</strong><span>Main installable package</span></div>
+            <b>→</b>
+          </button>
+
+          <button class="download-card" id="downloadSource">
+            <span class="download-card-icon">◫</span>
+            <div><small>SOURCE PROJECT</small><strong>Download source</strong><span>Editable generated files</span></div>
+            <b>→</b>
+          </button>
+
+          <button class="download-card" id="viewReport">
+            <span class="download-card-icon">✓</span>
+            <div><small>CONVERSION REPORT</small><strong>View full report</strong><span>Converted and unsupported systems</span></div>
+            <b>→</b>
+          </button>
+
+          <button class="download-card fixer-card" id="fixAddon">
+            <span class="download-card-icon">⚙</span>
+            <div><small>PROBLEM IN BEDROCK?</small><strong>Fix Add-on</strong><span>Use Content Log to find errors</span></div>
+            <b>→</b>
+          </button>
+        </div>
+
+        <div class="final-report">
+          <div><span class="green-dot"></span><b id="convertedFeatures">46</b><small>features converted</small></div>
+          <div><span class="gold-dot"></span><b id="rewrittenFeatures">5</b><small>logic replacements</small></div>
+          <div><span class="red-dot"></span><b id="manualFeatures">2</b><small>manual review items</small></div>
+        </div>
+
+        <div class="new-project">
+          <button class="ghost" id="newProjectBtn">← Convert another mod</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Fixer modal -->
+  <div class="modal-backdrop hidden" id="fixModal">
+    <div class="modal">
+      <button class="modal-close" id="closeFix">×</button>
+      <span class="eyebrow">BEDROCK CRASH FIXER</span>
+      <h2>Fix the add-on from its Content Log.</h2>
+      <p>Upload the generated add-on and paste the Bedrock error. The fixer flow identifies the likely problem and available repair type.</p>
+
+      <div class="modal-grid">
+        <div class="modal-drop">
+          <span>MCADDON</span>
+          <b id="fixFileName">Converted add-on</b>
+          <small>Current generated project</small>
+        </div>
+        <textarea id="contentLog" placeholder="Paste Bedrock Content Log / error here...
+
+Example:
+[Item] 'modbridge:blade' texture could not be found"></textarea>
+      </div>
+
+      <button class="primary full" id="analyzeErrorBtn">Analyze Error <b>→</b></button>
+
+      <div class="fix-result hidden" id="fixResult">
+        <div class="fix-result-head">
+          <span class="result-mark">!</span>
+          <div><small>ISSUE FOUND</small><strong id="fixIssue">Missing texture reference</strong></div>
+          <em id="fixType">AUTO FIX</em>
+        </div>
+        <div class="fix-result-body">
+          <div><span>Cause</span><b id="fixCause">Generated texture path does not match the resource file.</b></div>
+          <div><span>Action</span><b id="fixAction">Repair texture reference and rebuild the Resource Pack index.</b></div>
+        </div>
+        <button class="primary full" id="applyFixBtn">Apply Fix <b>→</b></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="converter.js"></script>
+</body>
+</html>
